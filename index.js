@@ -141,5 +141,5 @@ bot.on("message", function (message) {
             message.channel.sendMessage("B-Baka!");
     }
 });
-
+// u suck
 bot.login(config.token);
