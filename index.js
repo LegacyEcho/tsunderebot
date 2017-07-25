@@ -36,10 +36,29 @@ var fortunes = [
     "Very doubtful."
 ];
 
+// Array of tsunderes
+var tsun_gif = [
+    "https://68.media.tumblr.com/20f5bf9c69bc5231b92322b9dfd08afa/tumblr_o4bg1c9C3o1ul7kifo1_500.gif",
+    "http://31.media.tumblr.com/0d560b1cdbe31b3ebc97b7538512153b/tumblr_mhdls2dMZP1rbwsb9o1_500.gif",
+    "https://media.giphy.com/media/Qh7WgUju8KYRG/giphy.gif",
+    "https://s-media-cache-ak0.pinimg.com/originals/e0/77/e6/e077e6ff22f2fdbb67ef37d0ff2e8562.gif",
+
+]
+
+// Array of tsundere title responses
+var tsun_title = [
+    "You couldn't figure out by yourself? I knew it, you're so helpless",
+    "Don't think i like helping you...",
+    "Such a worthless maggot",
+    "Stop using me or i'll call the lolicops",
+    "Help for a helpless person",
+]
+
 // Log ready in console once the bot loads
 bot.on("ready", function () {
     console.log("I'm ready s-senpai! >///<");
     bot.guilds.get("338063891563151370").channels.get("338063891563151370").sendMessage("Ohayo! ^-^");
+    bot.user.setGame("♥♥♥");
 });
 
 // Log all messages to console
@@ -54,7 +73,7 @@ bot.on("message", (message) => {
         return;
     }
 
-    //Vars
+    // Responses
     var gitgud = ["**Gits gud!**", ":(", "Punches " + message.author.toString(), "**Cries**", "REEEEEEEEEEEEEE"];
     var doyouLike = ["NO", "Me? Not even your mom loves you!", "Punches " + message.author.toString(), "**Throws up**", "ME?! WHAT? BLUSHING? NO? well... maybe..", "REEEEEEEEEEEEEE"];
     var noob = ["...", "What's a noob", "Who, Skilless?", "**Gasps** How dare you!", "I'll let you know my KD/r is 3.4", "REEEEEEEEEEEEEE"]
@@ -119,14 +138,43 @@ bot.on("message", function (message) {
 
     switch (args[0].toLowerCase()) {
 
+        case "help":
+            //Help embed
+            const embed = new Discord.RichEmbed()
+                .setTitle("**Help & Fun/Voice Commands**")
+                .setAuthor("Tsundere Bot", bot.users.get("338066318626521089").avatarURL)
+
+                .setColor(0xFF004E)
+                .setDescription(tsun_title[Math.floor(Math.random() * tsun_title.length)])
+                .setFooter("Tsundere Bot (By: Mico & Skilless)", bot.users.get("338066318626521089").avatarURL)
+                .setImage(tsun_gif[Math.floor(Math.random() * tsun_gif.length)])
+                //.setThumbnail(bot.users.get("136856906139566081").avatarURL)
+                
+                //Takes a Date object, defaults to current date.
+
+                .setTimestamp()
+                .addField("RESPONSES", "The bot has some unique responses to some certain phrases such as 'git gud' (Multiple answers for each phrase)")
+                .addField("COMMANDS", "Various fun commands, some are useful")
+                .addField("Ping", "Returns 'Pong'", true)
+                .addField("Info", "Info about the bot", true)
+                .addField("Roll", "Rolls a number 1-100", true)
+                .addField("UTC", "Returns UTC +-0", true)
+                .addField("8ball", "Gives you a vaque answer to your question")
+                .addField("VOICE COMMANDS", "**These are used to control the bot around in voice channels")
+                .addField("Join", "Joins the current voice channel you're in, if possible", true)
+                .addField("Leave", "Leaves the current voice channel you're in.", true)
+                
+            message.channel.send({
+                embed
+            });
+            break;
         case "ping":
             //Ping test message (o?ping)
             message.channel.sendMessage("Pong!");
             break;
         case "info":
             //Info message (o?info)
-            message.channel.sendMessage("I was given life by Mico >///<");
-            message.channel.sendMessage("**Blushes**")
+            message.channel.sendMessage("I was given life by Mico >///< **Blushes**");
             break;
         case "8ball":
             //8ball (o?8ball)
