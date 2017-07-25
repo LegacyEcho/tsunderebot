@@ -141,6 +141,12 @@ bot.on("message", function (message) {
             //Only shows UTC time! (o?world time)
             message.reply(utcH + ":" + utcM + "UTC です～")
             break;
+            //Prevents defaulting
+        case "join":
+            break;
+            //Prevents defaulting
+        case "leave":
+            break;
         default:
             //Default message if arugement doesn't match
             message.channel.sendMessage("B-Baka!");
@@ -151,22 +157,15 @@ bot.on("message", function (message) {
 bot.on("message", (message) => {
     const channel = message.member.voiceChannel;
     //Joins voicechannel
-    if (message.content.toLowerCase() === "join voice") {
+    if (message.content.toLowerCase() === config.prefix + "join") {
         if (channel) {
             channel.join()
-            message.reply("I have joined you in your voice channel! 😁");
-        } else {
-            message.reply("You have to be in the voice channel for me to join!! 😠");
         }
     }
     //Leaves voicechannel
-    if (message.content.toLowerCase() === "leave voice") {
-        // FIGURE A WAY OUT TO RECOGNIZE THAT THE BOT IS IN THE VOICE CHANNEL
-        if (bot.voiceConnection) {
+    if (message.content.toLowerCase() === config.prefix + "leave") {
+        if (channel) {
             channel.leave();
-            message.reply("I have left your voice channel... 😢");
-        } else {
-            message.reply("I'm not in your voice channel. FailFish");
         }
     }
 });
