@@ -4,6 +4,8 @@ const Discord = require("discord.js");
 const bot = new Discord.Client();
 // Bot token
 const config = require("./config.json");
+//bot ID
+const botID = "<@338066318626521089>"
 
 // Fortunes for 8ball command
 var fortunes = [
@@ -146,6 +148,34 @@ bot.on("message", function (message) {
         default:
             //Default message if arugement doesn't match
             message.channel.sendMessage("B-Baka!");
+    }
+//voice channel commands 
+bot.on("message", message => {
+    //joins voicechannel
+    if (message.content === botID + " " + "join voice") {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.join()
+                .then(connection => {
+                    message.reply("I have joined you in your voice channel! 😁");
+                })
+        } else {
+         message.reply("You have to be in the voice channel for me to join!! 😠");
+        } 
+    }
+    //leaves voicechannel
+    if (message.content === botID + " " + "leave voice") {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.leave()
+                
+                    message.reply("I have left your voice channel... 😢");
+                
+        } else {
+            message.reply("You have to be in the voice channel for me to leave!! 😠");
+        } 
+    } else {
+        if (!bot.voiceChannel) {
+        message.reply("I'm not in your voice channel. FailFish");
+        }
     }
 });
 
