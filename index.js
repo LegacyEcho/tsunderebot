@@ -144,32 +144,28 @@ bot.on("message", function (message) {
         default:
             //Default message if arugement doesn't match
             message.channel.sendMessage("B-Baka!");
-    };
+    }
+});
 
-    //Voice channel commands 
-    bot.on("message", message => ) {
-        //Joins voicechannel
-        if (message.content === botID + " " + "join voice") {
-            if (message.member.voiceChannel) {
-                message.member.voiceChannel.join()
-                message.reply("I have joined you in your voice channel! 😁");
-            }
-        }
-        else {
+//Voice channel commands 
+bot.on("message", (message) => {
+    const channel = message.member.voiceChannel;
+    //Joins voicechannel
+    if (message.content.toLowerCase() === "join voice") {
+        if (channel) {
+            channel.join()
+            message.reply("I have joined you in your voice channel! 😁");
+        } else {
             message.reply("You have to be in the voice channel for me to join!! 😠");
         }
     }
     //Leaves voicechannel
-    if (message.content === botID + " " + "leave voice") {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.leave();
+    if (message.content.toLowerCase() === "leave voice") {
+        // FIGURE A WAY OUT TO RECOGNIZE THAT THE BOT IS IN THE VOICE CHANNEL
+        if (bot.voiceConnection) {
+            channel.leave();
             message.reply("I have left your voice channel... 😢");
-
         } else {
-            message.reply("You have to be in the voice channel for me to leave!! 😠");
-        }
-    } else {
-        if (!bot.voiceChannel) {
             message.reply("I'm not in your voice channel. FailFish");
         }
     }
