@@ -102,10 +102,6 @@ bot.on("message", (message) => {
     if (message.content.toLowerCase() === "lewd") {
         message.channel.send(lewd[Math.floor(Math.random() * lewd.length)]);
     }
-    //
-    if (message.content.toLowerCase() === "createdat") {
-        message.channel.send(createdAt);
-    }
 });
 
 bot.on("message", function (message) {
@@ -115,10 +111,10 @@ bot.on("message", function (message) {
     if (!message.content.startsWith(config.prefix)) {
         return;
     }
+
     var utcTime = new Date();
     var utcH = utcTime.getUTCHours();
     var utcM = utcTime.getUTCMinutes();
-
     var args = message.content.substring(config.prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
@@ -141,40 +137,40 @@ bot.on("message", function (message) {
             //Roll a number between 1-100 (o?roll)
             message.reply(("rolls a ") + (Math.floor(Math.random() * 100) + 1));
             break;
-        case "world time":
+        case "utc":
             //Only shows UTC time! (o?world time)
-            message.reply(utcH + ":" + utcM + "UTC です～" )
-            break;  
+            message.reply(utcH + ":" + utcM + "UTC です～")
+            break;
         default:
             //Default message if arugement doesn't match
             message.channel.sendMessage("B-Baka!");
+    };
+
+    //Voice channel commands 
+    bot.on("message", message => ) {
+        //Joins voicechannel
+        if (message.content === botID + " " + "join voice") {
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join()
+                message.reply("I have joined you in your voice channel! 😁");
+            }
+        }
+        else {
+            message.reply("You have to be in the voice channel for me to join!! 😠");
+        }
     }
-//voice channel commands 
-bot.on("message", message => {
-    //joins voicechannel
-    if (message.content === botID + " " + "join voice") {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join()
-                .then(connection => {
-                    message.reply("I have joined you in your voice channel! 😁");
-                })
-        } else {
-         message.reply("You have to be in the voice channel for me to join!! 😠");
-        } 
-    }
-    //leaves voicechannel
+    //Leaves voicechannel
     if (message.content === botID + " " + "leave voice") {
         if (message.member.voiceChannel) {
-            message.member.voiceChannel.leave()
-                
-                    message.reply("I have left your voice channel... 😢");
-                
+            message.member.voiceChannel.leave();
+            message.reply("I have left your voice channel... 😢");
+
         } else {
             message.reply("You have to be in the voice channel for me to leave!! 😠");
-        } 
+        }
     } else {
         if (!bot.voiceChannel) {
-        message.reply("I'm not in your voice channel. FailFish");
+            message.reply("I'm not in your voice channel. FailFish");
         }
     }
 });
