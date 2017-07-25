@@ -6,6 +6,8 @@ const bot = new Discord.Client();
 const config = require("./config.json");
 //bot ID
 const botID = "<@338066318626521089>"
+//timezone stuff
+const moment = require("moment-timezone")
 
 // Fortunes for 8ball command
 var fortunes = [
@@ -130,7 +132,10 @@ bot.on("message", function (message) {
     if (!message.content.startsWith(config.prefix)) {
         return;
     }
-
+     //timezone vars
+    var microTime = moment().tz("Europe/Helsinki").format("HH:mm");
+    var skillTime = moment().tz("American/Chicago").format("h:mm" + " " + "a" + " " + "(" + "HH:mm" +")" );
+    //vvvvsoon to be deletedvvvvvvv
     var utcTime = new Date();
     var utcH = utcTime.getUTCHours();
     var utcM = utcTime.getUTCMinutes();
@@ -189,6 +194,10 @@ bot.on("message", function (message) {
             //Only shows UTC time! (o?world time)
             message.reply(utcH + ":" + utcM + "UTC です～")
             break;
+         case "testing":
+            message.reply("Micro's time:" + " " +microTime)
+            message.reply("Skilless' time:" + " " +skillTime)
+            break;           
             //Prevents defaulting
         case "join":
             break;
