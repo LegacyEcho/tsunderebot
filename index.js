@@ -8,6 +8,8 @@ const config = require("./config.json");
 const botID = "<@338066318626521089>"
 //timezone stuff
 const moment = require("moment-timezone")
+//music
+const music = require("discord.js-music-v11");
 
 // Fortunes for 8ball command
 var fortunes = [
@@ -134,7 +136,7 @@ bot.on("message", function (message) {
     }
      //timezone vars
     var microTime = moment().tz("Europe/Helsinki").format("HH:mm");
-    var skillTime = moment().tz("American/Chicago").format("h:mm" + " " + "a" + " " + "(" + "HH:mm" +")" );
+    var skillTime = moment().tz("America/Chicago").format("h:mm" + " " + "a" + " " + "(" + "HH:mm" +")" );
     //vvvvsoon to be deletedvvvvvvv
     var utcTime = new Date();
     var utcH = utcTime.getUTCHours();
@@ -225,6 +227,14 @@ bot.on("message", (message) => {
             channel.leave();
         }
     }
+});
+
+music(bot, {
+	prefix: "m.",        // Prefix of 'm.'. (default is "-") 
+	global: false,      // Server-specific queues.
+	maxQueueSize: 10,   // Maximum queue size of 10.
+	clearInvoker: true, // If permissions applicable, allow the bot to delete the messages that invoke it (start with prefix)
+    channel: 'music'    // Name of voice channel to join. If omitted, will instead join user's voice channel.
 });
 
 bot.login(config.token);
