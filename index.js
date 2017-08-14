@@ -61,27 +61,15 @@ bot.on("message", (message) => {
     var lewd = ["Can we make sweer memes together onii-chan?", "You are cordially invited to fuck my ass", "Damn! Men have different genitals than women! :thinking:", "Wah! What are we gonne do on the bed?", "My hips are moving on their own.", "Shoot your goo my dude!", "LEWD... but i approve..", "Why are you like this?", "[semen intensifies]", "I love Jesus", "This tail feels a bit unfomrotable", "Bruh", "Yes, keep being lewd!", "Stop teasin me, give it to me quick and just shove the whole thing in!... sorry i got a bit carried away.", "I'm so lonely", "Our relationship is just two degenerates swallowing other's milk", "My holes remain unbreakable, hehe", "Giving a new definition to cookies and cream ;)", "Motto fukaku!", "Motto yukkuri", "Motto hayaku", "Anata-ga hoshii", "Aka-chan hoshikunai-no!", "Erojijii", "Impregnate my ass!", "You are so cute i want to cum in your nose", "...I'm gonna stroke it", "I'm a man!", "Fuck me like the toad-girl i am and make me ribbit", "If not supplied with dick, i would rapidly starve to death.", "Anal sex is the key to victory", "Lick...", "Stop touching me and explain yourself!", "Fuck me harder daddy!"]
 
     //Gitgud
-    if (message.content.toLowerCase() === "gitgud") {
-        message.channel.send(gitgud[Math.floor(Math.random() * gitgud.length)]);
-    }
-    //Git gud
-    if (message.content.toLowerCase() === "git gud") {
+    if (message.content.toLowerCase().includes('gitgud') && message.content.toLowerCase().startsWith('git')) {
         message.channel.send(gitgud[Math.floor(Math.random() * gitgud.length)]);
     }
     //Do you like me?
-    if (message.content.toLowerCase() === "do you like me?") {
-        message.channel.send(doyouLike[Math.floor(Math.random() * doyouLike.length)]);
-    }
-    //Do you like me
-    if (message.content.toLowerCase() === "do you like me") {
+    if (message.content.toLowerCase().includes('doyoulikeme') && message.content.toLowerCase().startsWith('do')) {
         message.channel.send(doyouLike[Math.floor(Math.random() * doyouLike.length)]);
     }
     //Noob
-    if (message.content.toLowerCase() === "noob") {
-        message.channel.send(noob[Math.floor(Math.random() * noob.length)]);
-    }
-    //Noob!
-    if (message.content.toLowerCase() === "noob!") {
+    if (message.content.toLowerCase().includes('noob') && message.content.toLowerCase().startsWith('noob')) {
         message.channel.send(noob[Math.floor(Math.random() * noob.length)]);
     }
     //Chris
